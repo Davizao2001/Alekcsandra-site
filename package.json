@@ -1,0 +1,10 @@
+{
+  "name": "alekcsandra-site",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -c tools/tailwind.config.js -i tools/input.css -o assets/css/tailwind.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

@@ -8,36 +8,10 @@
   <meta name="theme-color" content="#FBF9F5" />
 
   <!-- Fontes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
 
-  <!-- Tailwind (Play CDN — para produção, compile com o Tailwind CLI usando a mesma config abaixo) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            canvas: '#FBF9F5',
-            cream: '#F4EFE7',
-            sand: '#E7DDCF',
-            nude: '#CDBBA6',
-            taupe: '#6E6862',
-            carbon: '#1C1C1C',
-            earth: '#3B3129',
-            gold: { DEFAULT: '#C5A059', soft: '#D9BF8C', deep: '#A8833F' },
-          },
-          fontFamily: {
-            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-          },
-          letterSpacing: { luxe: '0.22em' },
-          transitionTimingFunction: { silk: 'cubic-bezier(.22,.61,.36,1)' },
-        },
-      },
-    };
-  </script>
+  <!-- Tailwind compilado localmente (ver README: npm run build:css) -->
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
 
   <style>
     html { background: #FBF9F5; }
@@ -578,9 +552,9 @@
   <!-- ============================================================
        SCRIPTS — GSAP + ScrollTrigger + Lenis
   ============================================================ -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
   <script>
   (() => {
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -625,7 +599,7 @@
     const track = document.querySelector('.marquee-track');
     [...track.children].forEach(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); track.appendChild(cl); });
 
-    if (reduce || !window.gsap) { window.addEventListener('scroll', onScrollNav, { passive: true }); return; }
+    if (reduce || !window.gsap || !window.ScrollTrigger || !window.Lenis) { window.addEventListener('scroll', onScrollNav, { passive: true }); return; }
 
     gsap.registerPlugin(ScrollTrigger);
 
