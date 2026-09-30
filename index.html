@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dra. Aleksandra Carla · Harmonização Facial &amp; Estética Avançada · Mooca, SP</title>
+  <meta name="description" content="Harmonização facial autoral e individualizada na Mooca, São Paulo. Resultados naturais que preservam sua identidade. Agende sua avaliação." />
+  <meta name="theme-color" content="#FBF9F5" />
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (Play CDN — para produção, compile com o Tailwind CLI usando a mesma config abaixo) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#FBF9F5',
+            cream: '#F4EFE7',
+            sand: '#E7DDCF',
+            nude: '#CDBBA6',
+            taupe: '#6E6862',
+            carbon: '#1C1C1C',
+            earth: '#3B3129',
+            gold: { DEFAULT: '#C5A059', soft: '#D9BF8C', deep: '#A8833F' },
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          letterSpacing: { luxe: '0.22em' },
+          transitionTimingFunction: { silk: 'cubic-bezier(.22,.61,.36,1)' },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { background: #FBF9F5; }
+    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    ::selection { background: #C5A059; color: #FBF9F5; }
+
+    /* Grão sutil de papel sobre o canvas */
+    .grain::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .035;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+
+    /* Link com sublinhado dourado */
+    .luxe-link { position: relative; }
+    .luxe-link::after {
+      content: ""; position: absolute; left: 0; bottom: -4px; height: 1px; width: 100%;
+      background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .6s cubic-bezier(.22,.61,.36,1);
+    }
+    .luxe-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    /* Botão com brilho acetinado */
+    .btn-sheen { position: relative; overflow: hidden; isolation: isolate; }
+    .btn-sheen::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
+      transform: translateX(-120%); transition: transform 1.1s cubic-bezier(.22,.61,.36,1);
+    }
+    .btn-sheen:hover::before { transform: translateX(120%); }
+
+    /* Cards de intenção (expansão horizontal no desktop) */
+    @media (min-width: 1024px) {
+      .intent-row { display: flex; gap: 1rem; height: 34rem; }
+      .intent-card { flex: 1 1 0; transition: flex-grow .9s cubic-bezier(.22,.61,.36,1), background-color .6s; }
+      .intent-row:hover .intent-card { flex-grow: .8; }
+      .intent-row .intent-card:hover { flex-grow: 2.1; }
+      .intent-card .intent-body { opacity: 0; transform: translateY(12px); transition: opacity .6s .15s, transform .8s .15s cubic-bezier(.22,.61,.36,1); }
+      .intent-card:hover .intent-body { opacity: 1; transform: none; }
+    }
+
+    /* Manifesto — palavras revelam com o scroll */
+    .manifesto .w { opacity: .14; transition: opacity .2s; }
+
+    /* Linha do método */
+    .method-line { transform-origin: top; }
+
+    /* Marquee dos depoimentos */
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    .marquee-track { animation: marquee 60s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+
+    /* Ken Burns do poster caso o vídeo não carregue */
+    .hero-poster { animation: kenburns 24s ease-in-out infinite alternate; }
+    @keyframes kenburns { from { transform: scale(1.04); } to { transform: scale(1.14) translate(-1%, -1%); } }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .manifesto .w { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body class="grain bg-canvas font-sans text-carbon">
+
+  <!-- ============================================================
+       1. NAVBAR FLUTUANTE
+  ============================================================ -->
+  <header id="nav" class="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-6 md:pt-5">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/15 bg-white/5 px-5 py-3 backdrop-blur-md transition-all duration-700 ease-silk md:px-7"
+         data-nav-inner>
+      <a href="#inicio" class="group flex items-center gap-3" aria-label="Dra. Aleksandra Carla — início">
+        <span class="font-serif text-2xl italic leading-none text-gold">AC</span>
+        <span class="hidden h-5 w-px bg-current opacity-30 sm:block" data-nav-text></span>
+        <span class="hidden text-[11px] font-medium uppercase tracking-luxe text-white sm:block" data-nav-text>Dra. Aleksandra Carla</span>
+      </a>
+
+      <ul class="hidden items-center gap-8 text-[12px] uppercase tracking-[0.18em] text-white/85 lg:flex" data-nav-text>
+        <li><a class="luxe-link" href="#inicio">Início</a></li>
+        <li><a class="luxe-link" href="#filosofia">Filosofia</a></li>
+        <li><a class="luxe-link" href="#protocolos">Protocolos</a></li>
+        <li><a class="luxe-link" href="#resultados">Resultados</a></li>
+        <li><a class="luxe-link" href="#espaco">O Espaço</a></li>
+        <li><a class="luxe-link" href="#contato">Contato</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="#contato" class="btn-sheen hidden rounded-full bg-gold px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-500 hover:bg-gold-deep sm:inline-flex">
+          Agendar Avaliação
+        </a>
+        <button id="menuBtn" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white lg:hidden" aria-label="Abrir menu" aria-expanded="false" data-nav-text>
+          <span class="relative block h-2.5 w-5">
+            <span class="absolute left-0 top-0 h-px w-full bg-current transition-transform duration-500" data-bar1></span>
+            <span class="absolute bottom-0 left-0 h-px w-full bg-current transition-transform duration-500" data-bar2></span>
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="mobileMenu" class="pointer-events-none fixed inset-3 top-20 z-40 flex flex-col justify-between rounded-[2rem] bg-earth/95 p-8 opacity-0 backdrop-blur-xl transition-opacity duration-500 lg:hidden">
+      <ul class="space-y-5 font-serif text-4xl font-light text-canvas">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#filosofia">Filosofia</a></li>
+        <li><a href="#protocolos">Protocolos</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#espaco">O Espaço</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a href="#contato" class="rounded-full bg-gold py-4 text-center text-xs font-semibold uppercase tracking-luxe text-white">Agendar Avaliação</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         2. HERO — MOLDURA ARREDONDADA + VÍDEO
+    ============================================================ -->
+    <section id="inicio" class="p-2.5 md:p-4">
+      <div class="hero-frame relative h-[92vh] min-h-[600px] overflow-hidden rounded-[1.75rem] bg-earth md:h-[95vh] md:rounded-[2.25rem]">
+
+        <!-- Fundo da hero: foto da recepção da clínica.
+             Opcional: salve um vídeo em assets/video/hero-consultorio.mp4 e ele entra por cima da foto com fade. -->
+        <div class="hero-media absolute inset-0">
+          <img src="assets/img/recepcao.jpg" alt="Recepção da clínica Dra. Aleksandra Carla" class="hero-poster absolute inset-0 h-full w-full object-cover" fetchpriority="high" />
+          <video id="heroVideo" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-[1500ms]"
+                 autoplay muted loop playsinline preload="metadata" poster="assets/img/recepcao.jpg">
+            <source src="assets/video/hero-consultorio.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- Overlays: nude quente + vinheta para legibilidade -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1f1813]/85 via-[#2b211a]/35 to-[#2b211a]/40"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(20,15,11,.45)_100%)]"></div>
+
+        <!-- Conteúdo -->
+        <div class="relative z-10 flex h-full flex-col justify-end px-6 pb-10 md:px-14 md:pb-16 lg:px-20">
+          <div class="max-w-4xl">
+            <!-- Prova social -->
+            <a href="#resultados" class="hero-reveal mb-8 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] tracking-[0.12em] text-white/90 backdrop-blur-md transition-colors duration-500 hover:bg-white/15">
+              <span class="font-semibold text-white">5.0</span>
+              <span class="tracking-[0.2em] text-gold-soft" aria-label="5 estrelas">★★★★★</span>
+              <span>+160 avaliações no Google</span>
+              <span class="h-3 w-px bg-white/30"></span>
+              <span>Mooca, SP</span>
+            </a>
+
+            <h1 class="font-serif text-[2.55rem] font-light leading-[1.1] text-white sm:text-6xl md:text-7xl lg:text-[6.4rem]">
+              <span class="block overflow-hidden"><span class="hero-line block">Harmonização que</span></span>
+              <span class="block overflow-hidden"><span class="hero-line block">respeita <em class="italic text-gold-soft">quem você é.</em></span></span>
+            </h1>
+
+            <div class="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-16">
+              <p class="hero-reveal max-w-md text-[15px] font-light leading-relaxed text-white/80 md:text-base">
+                Uma abordagem autoral e individualizada para realçar seus traços, preservar sua identidade e construir resultados naturais.
+              </p>
+              <a href="#contato" class="hero-reveal btn-sheen group inline-flex shrink-0 items-center gap-4 self-start rounded-full border border-white/30 bg-white/15 py-2 pl-7 pr-2 text-[12px] font-medium uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all duration-700 ease-silk hover:bg-white hover:text-carbon md:self-auto">
+                Agendar Avaliação
+                <span class="flex h-11 w-11 items-center justify-center rounded-full bg-gold text-white transition-transform duration-700 ease-silk group-hover:rotate-[-45deg]">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indicador de scroll -->
+        <div class="absolute bottom-8 right-8 z-10 hidden flex-col items-center gap-3 text-[10px] uppercase tracking-luxe text-white/60 lg:flex">
+          <span class="[writing-mode:vertical-rl]">Role</span>
+          <span class="relative h-14 w-px overflow-hidden bg-white/20"><span class="scroll-dot absolute left-0 top-0 h-5 w-px bg-gold-soft"></span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. MANIFESTO & FILOSOFIA
+    ============================================================ -->
+    <section id="filosofia" class="px-6 py-28 md:px-14 md:py-44 lg:px-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal mb-12 flex items-center gap-4 text-[11px] uppercase tracking-luxe text-taupe">
+          <span class="h-px w-10 bg-gold"></span> Filosofia
+        </div>
+        <p class="manifesto font-serif text-[2rem] font-light leading-[1.18] text-carbon sm:text-5xl md:text-[3.6rem] lg:text-[4.2rem]">
+          Não existe um rosto ideal. <em class="italic text-gold-deep">Existe o seu.</em> A harmonização não precisa transformar quem você é, mas equilibrar proporções e valorizar sua melhor versão com naturalidade e segurança médica.
+        </p>
+        <div class="reveal mt-16 grid gap-10 border-t border-carbon/10 pt-10 text-sm leading-relaxed text-taupe md:grid-cols-3">
+          <div>
+            <p class="mb-2 font-serif text-2xl italic text-carbon">Identidade</p>
+            <p>Cada plano nasce da leitura dos seus traços — nunca de um padrão pronto ou de uma tendência passageira.</p>
+          </div>
+          <div>
+            <p class="mb-2 font-serif text-2xl italic text-carbon">Proporção</p>
+            <p>Pequenos ajustes, pensados no conjunto, que devolvem equilíbrio ao rosto sem chamar atenção para si.</p>
+          </div>
+          <div>
+            <p class="mb-2 font-serif text-2xl italic text-carbon">Segurança</p>
+            <p>Produtos regulamentados, técnica minuciosa e indicação honesta — inclusive quando a melhor escolha é esperar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. OBJETIVOS — "O QUE VOCÊ DESEJA REALÇAR?"
+    ============================================================ -->
+    <section id="protocolos" class="px-2.5 md:px-4">
+      <div class="rounded-[1.75rem] bg-cream px-6 py-24 md:rounded-[2.25rem] md:px-14 md:py-32 lg:px-20">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <div class="reveal mb-6 flex items-center gap-4 text-[11px] uppercase tracking-luxe text-taupe">
+                <span class="h-px w-10 bg-gold"></span> Intenções
+              </div>
+              <h2 class="reveal font-serif text-5xl font-light leading-[1.05] md:text-6xl lg:text-7xl">
+                O que você deseja <em class="italic text-gold-deep">realçar?</em>
+              </h2>
+            </div>
+            <p class="reveal max-w-sm text-sm leading-relaxed text-taupe">
+              Em vez de uma lista de procedimentos, partimos do que importa para você. A técnica certa vem depois — na avaliação.
+            </p>
+          </div>
+
+          <div class="intent-row grid gap-4 sm:grid-cols-2 lg:flex">
+            <!-- Card 1 -->
+            <article class="intent-card reveal-card group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.5rem] border border-carbon/[0.06] bg-canvas p-8 hover:bg-white">
+              <div class="flex items-start justify-between">
+                <span class="font-serif text-sm italic text-taupe">01</span>
+                <span class="rounded-full border border-gold/40 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-gold-deep">Glow Lips</span>
+              </div>
+              <div>
+                <h3 class="font-serif text-4xl font-light leading-tight md:text-5xl lg:text-[2.5rem] xl:text-5xl">Lábios</h3>
+                <div class="intent-body mt-5 max-w-xs">
+                  <p class="text-sm leading-relaxed text-taupe">Contorno, hidratação e proporção natural. A técnica autoral <em class="text-carbon">Glow Lips</em> devolve viço e definição sem excesso de volume.</p>
+                  <span class="mt-6 inline-block h-px w-12 bg-gold transition-all duration-700 group-hover:w-24"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="intent-card reveal-card group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.5rem] border border-carbon/[0.06] bg-canvas p-8 hover:bg-white">
+              <div class="flex items-start justify-between">
+                <span class="font-serif text-sm italic text-taupe">02</span>
+              </div>
+              <div>
+                <h3 class="font-serif text-4xl font-light leading-tight md:text-5xl lg:text-[2.5rem] xl:text-5xl">Perfil &amp; Harmonia</h3>
+                <div class="intent-body mt-5 max-w-xs">
+                  <p class="text-sm leading-relaxed text-taupe">Rinomodelação e equilíbrio entre nariz, queixo e contorno mandibular — o perfil lido como um todo.</p>
+                  <span class="mt-6 inline-block h-px w-12 bg-gold transition-all duration-700 group-hover:w-24"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="intent-card reveal-card group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.5rem] border border-carbon/[0.06] bg-canvas p-8 hover:bg-white">
+              <div class="flex items-start justify-between">
+                <span class="font-serif text-sm italic text-taupe">03</span>
+              </div>
+              <div>
+                <h3 class="font-serif text-4xl font-light leading-tight md:text-5xl lg:text-[2.5rem] xl:text-5xl">Rejuvenescimento</h3>
+                <div class="intent-body mt-5 max-w-xs">
+                  <p class="text-sm leading-relaxed text-taupe">Suavidade e firmeza sem perder a expressão. Linhas atenuadas, olhar descansado, você reconhecível no espelho.</p>
+                  <span class="mt-6 inline-block h-px w-12 bg-gold transition-all duration-700 group-hover:w-24"></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="intent-card reveal-card group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.5rem] border border-carbon/[0.06] bg-canvas p-8 hover:bg-white">
+              <div class="flex items-start justify-between">
+                <span class="font-serif text-sm italic text-taupe">04</span>
+              </div>
+              <div>
+                <h3 class="font-serif text-4xl font-light leading-tight md:text-5xl lg:text-[2.5rem] xl:text-5xl">Pele &amp; Estrutura</h3>
+                <div class="intent-body mt-5 max-w-xs">
+                  <p class="text-sm leading-relaxed text-taupe">Bioestimuladores de colágeno para textura, firmeza e qualidade de pele que se constroem de dentro para fora.</p>
+                  <span class="mt-6 inline-block h-px w-12 bg-gold transition-all duration-700 group-hover:w-24"></span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. MÉTODO & PROTOCOLOS AUTORAIS
+    ============================================================ -->
+    <section id="metodo" class="px-6 py-28 md:px-14 md:py-40 lg:px-20">
+      <div class="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+        <div class="lg:sticky lg:top-32 lg:self-start">
+          <div class="reveal mb-6 flex items-center gap-4 text-[11px] uppercase tracking-luxe text-taupe">
+            <span class="h-px w-10 bg-gold"></span> Método
+          </div>
+          <h2 class="reveal font-serif text-5xl font-light leading-[1.05] md:text-6xl">
+            Uma jornada <em class="italic text-gold-deep">sem pressa,</em> do primeiro olhar ao cuidado contínuo.
+          </h2>
+          <p class="reveal mt-8 max-w-md text-sm leading-relaxed text-taupe">
+            Protocolos autorais como o <span class="text-carbon">Trio dos Sonhos</span> nascem desse método: combinações pensadas para o seu rosto, executadas no tempo certo.
+          </p>
+        </div>
+
+        <ol class="relative pl-10 md:pl-14" id="methodList">
+          <span class="absolute left-[7px] top-2 h-[calc(100%-1rem)] w-px bg-carbon/10 md:left-[11px]"></span>
+          <span class="method-line absolute left-[7px] top-2 h-[calc(100%-1rem)] w-px bg-gold md:left-[11px]"></span>
+
+          <li class="method-step relative pb-20">
+            <span class="absolute -left-10 top-2 h-[15px] w-[15px] rounded-full border border-gold bg-canvas md:-left-14 md:h-[23px] md:w-[23px]"></span>
+            <p class="mb-3 text-[11px] uppercase tracking-luxe text-gold-deep">Etapa 01</p>
+            <h3 class="font-serif text-4xl font-light md:text-5xl">Escuta &amp; Avaliação</h3>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-taupe">Uma conversa sem pressa sobre o que você sente, deseja e evita. Em seguida, análise detalhada das proporções, da pele e da dinâmica da sua expressão.</p>
+          </li>
+          <li class="method-step relative pb-20">
+            <span class="absolute -left-10 top-2 h-[15px] w-[15px] rounded-full border border-gold bg-canvas md:-left-14 md:h-[23px] md:w-[23px]"></span>
+            <p class="mb-3 text-[11px] uppercase tracking-luxe text-gold-deep">Etapa 02</p>
+            <h3 class="font-serif text-4xl font-light md:text-5xl">Planejamento Autoral</h3>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-taupe">Um plano individual — às vezes um único ponto, às vezes um protocolo combinado como o Trio dos Sonhos — explicado com clareza, etapas e expectativas reais.</p>
+          </li>
+          <li class="method-step relative pb-20">
+            <span class="absolute -left-10 top-2 h-[15px] w-[15px] rounded-full border border-gold bg-canvas md:-left-14 md:h-[23px] md:w-[23px]"></span>
+            <p class="mb-3 text-[11px] uppercase tracking-luxe text-gold-deep">Etapa 03</p>
+            <h3 class="font-serif text-4xl font-light md:text-5xl">Execução Precisa</h3>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-taupe">Procedimentos minimamente invasivos, feitos com técnica refinada, conforto e atenção ao detalhe em cada milímetro.</p>
+          </li>
+          <li class="method-step relative">
+            <span class="absolute -left-10 top-2 h-[15px] w-[15px] rounded-full border border-gold bg-canvas md:-left-14 md:h-[23px] md:w-[23px]"></span>
+            <p class="mb-3 text-[11px] uppercase tracking-luxe text-gold-deep">Etapa 04</p>
+            <h3 class="font-serif text-4xl font-light md:text-5xl">Acompanhamento Atento</h3>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-taupe">Retorno programado, canal direto para dúvidas e ajustes finos quando necessários. O cuidado continua depois que você sai do consultório.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. PROVA SOCIAL & DEPOIMENTOS
+         ⚠ Substitua os depoimentos de exemplo pelas avaliações reais do Google
+           (com autorização das pacientes) antes de publicar.
+    ============================================================ -->
+    <section id="resultados" class="px-2.5 md:px-4">
+      <div class="overflow-hidden rounded-[1.75rem] bg-earth py-24 text-canvas md:rounded-[2.25rem] md:py-32">
+        <div class="mx-auto max-w-7xl px-6 md:px-14 lg:px-20">
+          <div class="grid items-end gap-12 md:grid-cols-2">
+            <div>
+              <div class="reveal mb-6 flex items-center gap-4 text-[11px] uppercase tracking-luxe text-canvas/60">
+                <span class="h-px w-10 bg-gold"></span> Resultados
+              </div>
+              <h2 class="reveal font-serif text-5xl font-light leading-[1.05] md:text-6xl">
+                O que dizem sobre <em class="italic text-gold-soft">o cuidado.</em>
+              </h2>
+            </div>
+            <div class="reveal flex items-end gap-6 md:justify-end">
+              <p class="font-serif text-[7rem] font-light leading-[0.8] text-gold-soft md:text-[9rem]"><span data-count="5.0">5.0</span></p>
+              <div class="pb-2">
+                <p class="tracking-[0.3em] text-gold-soft">★★★★★</p>
+                <p class="mt-2 text-sm text-canvas/70">+160 avaliações no Google</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marquee de depoimentos -->
+        <div class="marquee reveal mt-20" aria-label="Depoimentos de pacientes">
+          <div class="marquee-track flex w-max gap-5 pl-5">
+            <!-- Os cards são duplicados via JS para o loop contínuo -->
+            <figure class="t-card w-[20rem] shrink-0 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-8 md:w-[26rem]">
+              <p class="text-gold-soft tracking-[0.25em] text-sm">★★★★★</p>
+              <blockquote class="mt-5 font-serif text-2xl font-light leading-snug">“[Depoimento real sobre a delicadeza no atendimento — copiar do Google.]”</blockquote>
+              <figcaption class="mt-6 text-[11px] uppercase tracking-[0.18em] text-canvas/50">Nome da paciente · Google</figcaption>
+            </figure>
+            <figure class="t-card w-[20rem] shrink-0 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-8 md:w-[26rem]">
+              <p class="text-gold-soft tracking-[0.25em] text-sm">★★★★★</p>
+              <blockquote class="mt-5 font-serif text-2xl font-light leading-snug">“[Depoimento real sobre a naturalidade do resultado — copiar do Google.]”</blockquote>
+              <figcaption class="mt-6 text-[11px] uppercase tracking-[0.18em] text-canvas/50">Nome da paciente · Google</figcaption>
+            </figure>
+            <figure class="t-card w-[20rem] shrink-0 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-8 md:w-[26rem]">
+              <p class="text-gold-soft tracking-[0.25em] text-sm">★★★★★</p>
+              <blockquote class="mt-5 font-serif text-2xl font-light leading-snug">“[Depoimento real sobre o ambiente acolhedor — copiar do Google.]”</blockquote>
+              <figcaption class="mt-6 text-[11px] uppercase tracking-[0.18em] text-canvas/50">Nome da paciente · Google</figcaption>
+            </figure>
+            <figure class="t-card w-[20rem] shrink-0 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-8 md:w-[26rem]">
+              <p class="text-gold-soft tracking-[0.25em] text-sm">★★★★★</p>
+              <blockquote class="mt-5 font-serif text-2xl font-light leading-snug">“[Depoimento real sobre a segurança e as explicações — copiar do Google.]”</blockquote>
+              <figcaption class="mt-6 text-[11px] uppercase tracking-[0.18em] text-canvas/50">Nome da paciente · Google</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="mx-auto mt-14 max-w-7xl px-6 md:px-14 lg:px-20">
+          <a href="https://www.google.com/maps/search/?api=1&query=Dra.+Aleksandra+Carla+Rua+Serra+da+Bocaina+570+Mooca" target="_blank" rel="noopener"
+             class="luxe-link text-[12px] uppercase tracking-[0.2em] text-canvas/80">Ver todas as avaliações no Google →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. A DRA. ALEKSANDRA CARLA
+    ============================================================ -->
+    <section id="sobre" class="px-6 py-28 md:px-14 md:py-40 lg:px-20">
+      <div class="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
+        <div class="relative">
+          <div class="portrait-wrap relative aspect-[4/5] overflow-hidden rounded-[1.75rem]">
+            <img src="assets/img/dra-aleksandra.jpg" alt="Retrato da Dra. Aleksandra Carla" class="portrait-img h-full w-full scale-110 object-cover object-top" loading="lazy" />
+          </div>
+          <div class="absolute -bottom-6 -right-2 rounded-full bg-canvas px-6 py-4 shadow-[0_20px_60px_-20px_rgba(28,28,28,.25)] md:-right-8">
+            <p class="font-serif text-lg italic text-carbon">Harmonização autoral · Mooca</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="reveal mb-6 flex items-center gap-4 text-[11px] uppercase tracking-luxe text-taupe">
+            <span class="h-px w-10 bg-gold"></span> Quem cuida de você
+          </div>
+          <h2 class="reveal font-serif text-5xl font-light leading-[1.05] md:text-6xl lg:text-7xl">
+            Dra. Aleksandra <em class="italic text-gold-deep">Carla</em>
+          </h2>
+          <div class="reveal mt-10 space-y-5 text-[15px] leading-relaxed text-taupe">
+            <p>À frente da clínica na Mooca, a Dra. Aleksandra construiu uma trajetória dedicada à harmonização facial e à estética avançada com um olhar que valoriza o que já é seu: seus traços, sua história, sua expressão.</p>
+            <p>Seu trabalho une leitura estética apurada e rigor técnico — cada indicação é feita com ética, transparência e o compromisso de nunca ultrapassar o limite do natural.</p>
+            <p class="text-carbon">É assim que nascem protocolos autorais como o Glow Lips e o Trio dos Sonhos: da escuta, não do excesso.</p>
+          </div>
+
+          <!-- Ajuste com a formação real -->
+          <dl class="reveal mt-12 grid grid-cols-2 gap-8 border-t border-carbon/10 pt-8">
+            <div>
+              <dt class="text-[11px] uppercase tracking-luxe text-taupe">Especialidade</dt>
+              <dd class="mt-2 font-serif text-xl">Harmonização Facial</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] uppercase tracking-luxe text-taupe">Registro</dt>
+              <dd class="mt-2 font-serif text-xl">[Conselho-SP 00000]</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. O ESPAÇO
+    ============================================================ -->
+    <section id="espaco" class="px-2.5 pb-28 md:px-4 md:pb-40">
+      <div class="mx-auto max-w-[1600px]">
+        <div class="mb-14 flex flex-col justify-between gap-6 px-4 md:flex-row md:items-end md:px-10 lg:px-16">
+          <div>
+            <div class="reveal mb-6 flex items-center gap-4 text-[11px] uppercase tracking-luxe text-taupe">
+              <span class="h-px w-10 bg-gold"></span> O Espaço
+            </div>
+            <h2 class="reveal font-serif text-5xl font-light leading-[1.05] md:text-6xl lg:text-7xl">
+              Um lugar para <em class="italic text-gold-deep">desacelerar.</em>
+            </h2>
+          </div>
+          <p class="reveal max-w-sm text-sm leading-relaxed text-taupe">
+            Luz quente, texturas naturais e silêncio. Cada detalhe da clínica foi pensado para que você se sinta recebida — não atendida.
+          </p>
+        </div>
+
+        <!-- Galeria: substitua pelas fotos do consultório, recepção e detalhes -->
+        <div class="grid grid-cols-2 gap-2.5 md:grid-cols-12 md:gap-4">
+          <figure class="gallery-item col-span-2 overflow-hidden rounded-[1.5rem] md:col-span-8 md:row-span-2">
+            <img src="assets/img/recepcao.jpg" alt="Recepção com espelho orgânico iluminado" class="parallax-img h-[22rem] w-full scale-[1.15] object-cover md:h-[40rem]" loading="lazy" />
+          </figure>
+          <figure class="gallery-item overflow-hidden rounded-[1.5rem] md:col-span-4">
+            <img src="assets/img/recepcao.jpg" alt="Detalhe do logotipo em latão" class="h-[14rem] w-full object-cover md:h-[19.5rem]" style="transform: scale(2.2); transform-origin: 50% 22%;" loading="lazy" />
+          </figure>
+          <figure class="gallery-item overflow-hidden rounded-[1.5rem] md:col-span-4">
+            <img src="assets/img/recepcao.jpg" alt="Poltronas de veludo na sala de espera" class="h-[14rem] w-full object-cover md:h-[19.5rem]" style="transform: scale(2); transform-origin: 70% 78%;" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. FOOTER & AGENDAMENTO
+    ============================================================ -->
+    <section id="contato" class="px-2.5 pb-2.5 md:px-4 md:pb-4">
+      <div class="relative overflow-hidden rounded-[1.75rem] bg-carbon text-canvas md:rounded-[2.25rem]">
+        <div class="absolute inset-0 opacity-25">
+          <img src="assets/img/recepcao.jpg" alt="" aria-hidden="true" class="h-full w-full object-cover" loading="lazy" />
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-carbon/70 via-carbon/90 to-carbon"></div>
+
+        <div class="relative px-6 pb-10 pt-28 md:px-14 md:pt-40 lg:px-20">
+          <div class="mx-auto max-w-7xl">
+            <p class="reveal mb-8 text-[11px] uppercase tracking-luxe text-gold-soft">Agendamento</p>
+            <h2 class="reveal max-w-5xl font-serif text-5xl font-light leading-[1.02] sm:text-6xl md:text-7xl lg:text-[7rem]">
+              Seu próximo passo <em class="italic text-gold-soft">começa aqui.</em>
+            </h2>
+            <div class="reveal mt-12 flex flex-col gap-4 sm:flex-row">
+              <!-- Troque pelo número real do WhatsApp -->
+              <a href="https://wa.me/5511900000000?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener"
+                 class="btn-sheen group inline-flex items-center justify-between gap-6 rounded-full bg-gold py-2 pl-8 pr-2 text-[12px] font-semibold uppercase tracking-[0.2em] text-white transition-colors duration-500 hover:bg-gold-deep">
+                Agendar pelo WhatsApp
+                <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 transition-transform duration-700 ease-silk group-hover:rotate-[-45deg]">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+              </a>
+              <a href="https://www.google.com/maps/search/?api=1&query=Rua+Serra+da+Bocaina+570+Mooca+S%C3%A3o+Paulo" target="_blank" rel="noopener"
+                 class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.2em] text-canvas/85 transition-colors duration-500 hover:border-gold-soft hover:text-gold-soft">
+                Como chegar
+              </a>
+            </div>
+
+            <div class="mt-28 grid gap-12 border-t border-white/10 pt-12 sm:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <p class="font-serif text-3xl italic text-gold-soft">AC</p>
+                <p class="mt-3 text-[11px] uppercase tracking-luxe text-canvas/80">Dra. Aleksandra Carla</p>
+                <p class="mt-1 text-xs text-canvas/50">Harmonização Facial &amp; Estética Avançada</p>
+              </div>
+              <div>
+                <p class="mb-3 text-[11px] uppercase tracking-luxe text-canvas/40">Endereço</p>
+                <p class="text-sm leading-relaxed text-canvas/80">Rua Serra da Bocaina, 570<br />Mooca — São Paulo, SP</p>
+              </div>
+              <div>
+                <!-- Ajuste o horário real -->
+                <p class="mb-3 text-[11px] uppercase tracking-luxe text-canvas/40">Atendimento</p>
+                <p class="text-sm leading-relaxed text-canvas/80">Segunda a sexta · 9h às 19h<br />Sábado · 9h às 14h<br /><span class="text-canvas/50">Somente com agendamento</span></p>
+              </div>
+              <div>
+                <p class="mb-3 text-[11px] uppercase tracking-luxe text-canvas/40">Contato</p>
+                <ul class="space-y-2 text-sm text-canvas/80">
+                  <li><a class="luxe-link" href="https://wa.me/5511900000000" target="_blank" rel="noopener">WhatsApp · (11) 90000-0000</a></li>
+                  <li><a class="luxe-link" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-[11px] leading-relaxed text-canvas/40 md:flex-row md:justify-between">
+              <p class="max-w-2xl">
+                Responsável técnica: Dra. Aleksandra Carla — [Conselho-SP 00000]. Os resultados variam de pessoa para pessoa. Todos os procedimentos são realizados mediante avaliação prévia individual. Conteúdo de caráter informativo, em conformidade com as normas éticas do conselho profissional.
+              </p>
+              <p>© <span id="year"></span> Dra. Aleksandra Carla</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       SCRIPTS — GSAP + ScrollTrigger + Lenis
+  ============================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script>
+  (() => {
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Vídeo opcional da hero: só aparece se carregar ---------- */
+    const video = document.getElementById('heroVideo');
+    const showVideo = () => { video.classList.remove('opacity-0'); document.querySelector('.hero-poster').style.animation = 'none'; };
+    video.addEventListener('canplay', showVideo, { once: true });
+    if (video.readyState >= 3) showVideo();
+    new IntersectionObserver(([e]) => { e.isIntersecting ? video.play().catch(() => {}) : video.pause(); }).observe(video);
+
+    /* ---------- Menu mobile ---------- */
+    const btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+    const b1 = btn.querySelector('[data-bar1]'), b2 = btn.querySelector('[data-bar2]');
+    const toggle = (open) => {
+      menu.classList.toggle('opacity-0', !open); menu.classList.toggle('pointer-events-none', !open);
+      btn.setAttribute('aria-expanded', open);
+      b1.style.transform = open ? 'translateY(5px) rotate(45deg)' : ''; b2.style.transform = open ? 'translateY(-5px) rotate(-45deg)' : '';
+    };
+    btn.addEventListener('click', () => toggle(btn.getAttribute('aria-expanded') !== 'true'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+
+    /* ---------- Navbar: vidro escuro sobre a hero, creme depois ---------- */
+    const navInner = document.querySelector('[data-nav-inner]');
+    const navTexts = document.querySelectorAll('[data-nav-text]');
+    const setNav = (solid) => {
+      navInner.classList.toggle('bg-canvas/85', solid);
+      navInner.classList.toggle('border-carbon/10', solid);
+      navInner.classList.toggle('shadow-[0_10px_40px_-20px_rgba(28,28,28,.3)]', solid);
+      navInner.classList.toggle('bg-white/5', !solid);
+      navInner.classList.toggle('border-white/15', !solid);
+      navTexts.forEach(el => {
+        el.classList.toggle('text-carbon', solid); el.classList.toggle('!text-carbon', solid);
+        el.classList.toggle('border-carbon/20', solid);
+      });
+    };
+    const onScrollNav = () => setNav(window.scrollY > window.innerHeight * 0.8);
+    onScrollNav();
+
+    /* ---------- Duplica depoimentos para o marquee ---------- */
+    const track = document.querySelector('.marquee-track');
+    [...track.children].forEach(c => { const cl = c.cloneNode(true); cl.setAttribute('aria-hidden', 'true'); track.appendChild(cl); });
+
+    if (reduce || !window.gsap) { window.addEventListener('scroll', onScrollNav, { passive: true }); return; }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ---------- Lenis smooth scroll ---------- */
+    const lenis = new Lenis({ duration: 1.25, easing: t => 1 - Math.pow(1 - t, 4), smoothWheel: true });
+    lenis.on('scroll', () => { ScrollTrigger.update(); onScrollNav(); });
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -20, duration: 1.6 }); }
+    }));
+
+    const ease = 'power3.out';
+
+    /* ---------- Hero: entrada ---------- */
+    gsap.timeline({ defaults: { ease } })
+      .from('.hero-frame', { scale: 0.96, borderRadius: '3rem', duration: 1.6, ease: 'power2.out' })
+      .from('.hero-line', { yPercent: 110, duration: 1.4, stagger: 0.12 }, 0.35)
+      .from('.hero-reveal', { y: 24, opacity: 0, duration: 1.2, stagger: 0.12 }, 0.8)
+      .from('#nav', { y: -30, opacity: 0, duration: 1 }, 0.9);
+
+    // Leve parallax/zoom do vídeo ao rolar
+    gsap.to('.hero-media', { yPercent: 12, scale: 1.06, ease: 'none',
+      scrollTrigger: { trigger: '#inicio', start: 'top top', end: 'bottom top', scrub: true } });
+
+    gsap.to('.scroll-dot', { y: 40, duration: 1.8, repeat: -1, ease: 'power1.inOut' });
+
+    /* ---------- Reveals genéricos ---------- */
+    gsap.utils.toArray('.reveal').forEach(el => {
+      gsap.from(el, { y: 36, opacity: 0, duration: 1.3, ease,
+        scrollTrigger: { trigger: el, start: 'top 88%' } });
+    });
+
+    gsap.from('.reveal-card', { y: 50, opacity: 0, duration: 1.3, ease, stagger: 0.12,
+      scrollTrigger: { trigger: '.intent-row', start: 'top 85%' } });
+
+    /* ---------- Manifesto: palavra a palavra ---------- */
+    const manifesto = document.querySelector('.manifesto');
+    const wrapWords = (node) => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(part => {
+            if (!part.trim()) { frag.appendChild(document.createTextNode(part)); return; }
+            const s = document.createElement('span'); s.className = 'w'; s.textContent = part; frag.appendChild(s);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) wrapWords(n);
+      });
+    };
+    wrapWords(manifesto);
+    gsap.to(manifesto.querySelectorAll('.w'), { opacity: 1, stagger: 0.05, ease: 'none',
+      scrollTrigger: { trigger: manifesto, start: 'top 78%', end: 'bottom 45%', scrub: 0.6 } });
+
+    /* ---------- Método: linha dourada desenhada ---------- */
+    gsap.fromTo('.method-line', { scaleY: 0 }, { scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: '#methodList', start: 'top 70%', end: 'bottom 70%', scrub: 0.8 } });
+    gsap.utils.toArray('.method-step').forEach(step => {
+      gsap.from(step, { opacity: 0.2, y: 30, duration: 1.2, ease,
+        scrollTrigger: { trigger: step, start: 'top 78%' } });
+    });
+
+    /* ---------- Retrato: revelação em cortina + parallax ---------- */
+    gsap.from('.portrait-wrap', { clipPath: 'inset(100% 0% 0% 0% round 1.75rem)', duration: 1.8, ease: 'power3.inOut',
+      scrollTrigger: { trigger: '.portrait-wrap', start: 'top 80%' } });
+    gsap.to('.portrait-img', { yPercent: -8, ease: 'none',
+      scrollTrigger: { trigger: '.portrait-wrap', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+    /* ---------- Galeria ---------- */
+    gsap.from('.gallery-item', { y: 60, opacity: 0, duration: 1.4, ease, stagger: 0.15,
+      scrollTrigger: { trigger: '#espaco .grid', start: 'top 85%' } });
+    gsap.to('.parallax-img', { yPercent: -10, ease: 'none',
+      scrollTrigger: { trigger: '.parallax-img', start: 'top bottom', end: 'bottom top', scrub: true } });
+  })();
+  </script>
+</body>
+</html>
